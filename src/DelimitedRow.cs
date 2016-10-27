@@ -1,0 +1,36 @@
+﻿/*
+================================================================================
+Creator : Ceri Binding, University of South Wales
+Project	: STELETO
+Classes	: STELETO.DelimitedRow
+Summary	: FileHelpers class to import delimited data as an array of strings
+          used for situation where we don't know the field names in advance
+License : http://creativecommons.org/licenses/by/3.0/
+================================================================================
+History :
+
+12/01/2011  CFB Created classes
+================================================================================
+*/
+using System;
+using FileHelpers;
+
+namespace STELETO
+{
+    [DelimitedRecord(",")]
+    class DelimitedRow
+    {
+        [FieldNullValue(typeof(string), "")]
+        [FieldQuoted('"', QuoteMode.OptionalForBoth)]
+        public string[] fieldValues = {}; 
+    }
+
+    // 15/03/2012 experimental; not used yet
+    [DelimitedRecord(";")]
+    class SubDelimitedRow
+    {
+        [FieldNullValue(typeof(string), "")]
+        [FieldQuoted('"', QuoteMode.OptionalForBoth)]
+        public string[] fieldValues = { };
+    }
+}
