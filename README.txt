@@ -14,7 +14,7 @@ STELETO -i:"c:\tmp\input.csv" -o:"c:\tmp\output.txt" -t:"c:\tmp\template.stg" -f
 
 The options may be present in any order, and may be expressed: 
 -name --name /name -name:value -name=value -name="value"  
-For furthe rdetails of usage see the Wiki
+For further details of usage see the Wiki
 
 STELETO will convert the input delimited data file data using the named template and 
 write to the output file The StringTemplate group file has the following general format
