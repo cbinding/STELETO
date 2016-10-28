@@ -11,4 +11,4 @@ Example usage (STELETO -h for help):
 ```STELETO -i:"c:\path\in.csv" -o:"c:\path\out.txt" -t:"c:\path\template.stg" -f -d:"," -p:name:value```  
 The options may be present in any order, and may be expressed:  
 ```-name --name /name -name:value -name=value -name="value"```  
-[For further details of usage please see the Wiki]
+[For further details of usage please see the Wiki http://github.com/cbinding/STELETO/wiki]
