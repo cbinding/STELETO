@@ -28,7 +28,7 @@ namespace STELETO
     //Main functionality for STELETO app
     public static class API
     {
-        // Convert CSV file to XML file        
+        // Convert delimited text file to XML file        
         public static int Delimited2XML(string fileName = "", string xmlFileName = "", string delimiter = "\t", bool hasHeader = false)
         {
             //Tidy up input parameters
@@ -61,7 +61,7 @@ namespace STELETO
                 throw new ArgumentException("input data file name required", "fileName");
             }
             //Set up the delimited file reader 
-            DelimitedFileEngine<DelimitedRow> engine = new DelimitedFileEngine<DelimitedRow>();
+            DelimitedFileEngine<DelimitedRow> engine = new DelimitedFileEngine<DelimitedRow>(Encoding.UTF8);
             engine.Options.Delimiter = delimiter.ToString();
             engine.Options.IgnoreEmptyLines = true;
             //engine.Options.IgnoreCommentedLines = true; 
@@ -138,10 +138,13 @@ namespace STELETO
                             (fieldValues[i].StartsWith("\"") &&
                             (fieldValues[i].EndsWith("\""))))
                             fieldValues[i] = fieldValues[i].Substring(1, fieldValues[i].Length - 2);
-
+                        
                         //05/09/12 - UNICODE?
-                        //if (!fieldValues[i].IsNormalized())
-                        //fieldValues[i] = EscapeUnicode(fieldValues[i]);
+                        /*if (!fieldValues[i].IsNormalized())
+                        {
+                            fieldValues[i].Normalize();
+                            fieldValues[i] = EscapeUnicode(fieldValues[i]);
+                        }*/
 
                     }
 
@@ -255,7 +258,7 @@ namespace STELETO
             if (fileName == String.Empty)
                 throw new ArgumentException("file name required", "fileName");
 
-            System.IO.StreamWriter sw = new System.IO.StreamWriter(fileName, false);
+            System.IO.StreamWriter sw = new System.IO.StreamWriter(fileName, false, Encoding.UTF8);
 
             //Write delimited header row of column names
             String colNames = "";
@@ -374,12 +377,11 @@ namespace STELETO
                 stgFileName = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), stgFileName);
 
             //Revised for Antlr4...Read the template group from the file, define default delimiters
-            TemplateGroupFile stg = new TemplateGroupFile(stgFileName, '$', '$');
-
+            TemplateGroupFile stg = new TemplateGroupFile(stgFileName, Encoding.UTF8, '$', '$');
+           
             //Register renderer for performing Url/Xml Encoding
             stg.RegisterRenderer(typeof(String), new BasicFormatRenderer());
-
-
+            
             //System.Collections.ArrayList records = new System.Collections.ArrayList();
 
             //Write the results to the output file
@@ -387,6 +389,7 @@ namespace STELETO
             System.IO.StreamWriter sw = null;
             try
             {
+                // note - don't explicitly specify UTF8 encoding here, or it will write BOM to output file
                 sw = new System.IO.StreamWriter(outFileName, false);
 
                 // If the HEADER template is present, call it and write result to output file 

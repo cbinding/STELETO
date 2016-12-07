@@ -51,6 +51,16 @@ namespace STELETO
                             return GetHash(s.Trim().ToLower(), HashType.MD5);
                         case "NTESCAPE": //escape ntriples literal value
                             return s.Replace(@"\", @"\\").Replace("\"", "\\\"");
+                        case "GYEAR": // format as xsd:gYear - must be 4 digits, zero padded string, may be negative 
+                            {
+                                var n = 0;
+                                if (Int32.TryParse(s, out n))
+                                {
+                                    return (n < 0 ? "-" : "") + n.ToString().PadLeft(4, '0');
+                                }
+                                else
+                                    return s;
+                            }
                         default:
                             return s;
                     }
