@@ -118,7 +118,7 @@ namespace STELETO
                 }
                 else //not first row
                 {
-                    //still a CHANCE that we have more or less field values than DataTable columns
+                    //still a CHANCE that we will have more or less field values than DataTable columns
                     //Ensure that what's being added will match up with DataTable.Columns.Count, however
                     //this may hide errors where a field value contains commas and is incorrectly parsed
                     String[] fieldValues = new String[dt.Columns.Count];
@@ -137,15 +137,7 @@ namespace STELETO
                         if ((fieldValues[i] != null) &&
                             (fieldValues[i].StartsWith("\"") &&
                             (fieldValues[i].EndsWith("\""))))
-                            fieldValues[i] = fieldValues[i].Substring(1, fieldValues[i].Length - 2);
-                        
-                        //05/09/12 - UNICODE?
-                        /*if (!fieldValues[i].IsNormalized())
-                        {
-                            fieldValues[i].Normalize();
-                            fieldValues[i] = EscapeUnicode(fieldValues[i]);
-                        }*/
-
+                            fieldValues[i] = fieldValues[i].Substring(1, fieldValues[i].Length - 2);                        
                     }
 
                     dt.Rows.Add(fieldValues);
@@ -325,7 +317,8 @@ namespace STELETO
             //If output file name not passed in, generate it from delimited file name
             if (outFileName == String.Empty)  outFileName = dataFileName + ".txt";
             // read tabular delimited input data to datatable
-            DataTable dt = Delimited2DT(dataFileName, delimiter, true);
+            DataTable dt = Delimited2DT(dataFileName, delimiter, hasHeader);
+           
             // convert datatable using template, write to output file 
             return DT2STG(dt, stgFileName, outFileName, options);
         }
@@ -360,14 +353,14 @@ namespace STELETO
         /// <exception cref="System.ArgumentException">Throws an exception if stgFileName or outFileName are not supplied</exception>        
         public static int DT2STG(DataTable table, String stgFileName, String outFileName, IDictionary<string,string> options = null)
         {
-            //tidy up input parameters
+            // tidy up input parameters
             stgFileName = stgFileName.Trim(); // StringTemplateGroup file
             outFileName = outFileName.Trim(); // Output file
             
-            //Fail if stgFileName not passed in
+            // Fail if stgFileName not passed in
             if (stgFileName == String.Empty)
                 throw new ArgumentException("template file name required", "stgFileName");
-            //Fail if outFileName not passed in
+            // Fail if outFileName not passed in
             if (outFileName == String.Empty)
                 throw new ArgumentException("output file name required", "outFileName");
                         
@@ -376,13 +369,13 @@ namespace STELETO
             if (path == "")
                 stgFileName = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), stgFileName);
 
-            //Revised for Antlr4...Read the template group from the file, define default delimiters
+            // Revised for Antlr4...Read the template group from the file, define default delimiters
             TemplateGroupFile stg = new TemplateGroupFile(stgFileName, Encoding.UTF8, '$', '$');
            
-            //Register renderer for performing Url/Xml Encoding
+            // Register renderer for performing Url/Xml Encoding
             stg.RegisterRenderer(typeof(String), new BasicFormatRenderer());
             
-            //System.Collections.ArrayList records = new System.Collections.ArrayList();
+            // System.Collections.ArrayList records = new System.Collections.ArrayList();
 
             //Write the results to the output file
             int rowCount = 0;

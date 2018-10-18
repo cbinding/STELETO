@@ -22,7 +22,7 @@ namespace STELETO
     {
         [FieldNullValue(typeof(string), "")]
         [FieldQuoted('"', QuoteMode.OptionalForBoth)]
-        public string[] fieldValues = {}; 
+        public string[] fieldValues = { }; 
     }
 
     // 15/03/2012 experimental; not used yet

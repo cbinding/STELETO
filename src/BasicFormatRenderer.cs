@@ -1,4 +1,17 @@
-﻿using System;
+﻿/*
+================================================================================
+Creator : Ceri Binding, University of South Wales
+Project	: STELETO
+Classes	: STELETO.BasicFormatRenderer
+Summary	: Functions callable within templates for specialised rendering of values
+License : http://creativecommons.org/licenses/by/3.0/
+================================================================================
+History :
+
+12/01/2011  CFB Created classes
+================================================================================
+*/
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +22,7 @@ namespace STELETO
 {    
     /// <summary>For specialised rendering of template values</summary>
     /// <returns>Altered string returned to template</returns>      
-    /// <example>Usage e.g. $myVal;format="UrlEncode"$</example>
+    /// <example>Usage in template e.g. $myVal;format="UrlEncode"$</example>
     public class BasicFormatRenderer : IAttributeRenderer
     {
         public String ToString(Object o)

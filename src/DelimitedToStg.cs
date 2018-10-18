@@ -48,6 +48,7 @@ namespace STELETO
             String stgFileName = "";    // StringTemplate template group file name with path    
             String outFileName = "";    // output file name including path
             String delimiter = "\t";    // default is tab delimited unless present
+            String subdelimiter = ";";    // default is ; unless present
             Boolean hasFieldNames = false;  // input data file has header row of column names?
             IDictionary<string, string> extras = new Dictionary<string, string>();  // extra parameters, to pass through to template
 
@@ -56,6 +57,7 @@ namespace STELETO
                 { "o|output=", "name of output {FILE}", v => { if (v != null) outFileName = v.Trim(); }},
                 { "t|template=", "name of template {FILE}", v => { if (v != null) stgFileName = v.Trim(); }},
                 { "d|delimiter=", "input file delimiter (default=tab) {STRING}", v => { if (v != null) delimiter = v; }},
+                //{ "s|subdelimiter=", "input file sub-delimiter (default=';') {STRING}", v => { if (v != null) subdelimiter = v; }},
                 { "p|param={NAME}:{VALUE}", "named parameters to pass to template as {NAME}:{VALUE}", (m, v) => { extras.Add (m, v); }},
                 { "f|fields", "first input row contains field names", v => hasFieldNames = v != null },
                 { "h|?|help",  "show this message and exit", v => showHelp = v != null },

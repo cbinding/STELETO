@@ -13,4 +13,7 @@
     <FallbackCulture>en-US</FallbackCulture>
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <StartArguments>-i:"C:\Users\cbinding\OneDrive - University of South Wales\Projects\OASIS-LOD\data\opnames\input\SS84.csv" -o:"C:\Users\cbinding\OneDrive - University of South Wales\Projects\OASIS-LOD\data\opnames\output\test.nt" -t:"C:\Users\cbinding\OneDrive - University of South Wales\Projects\OASIS-LOD\data\opnames\stg\opnames-to-ntriples.stg"</StartArguments>
+  </PropertyGroup>
 </Project>
