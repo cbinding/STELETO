@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("STELETO")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Delimited text data conversion via Liquid template")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("University of South Wales")]
 [assembly: AssemblyProduct("STELETO")]
-[assembly: AssemblyCopyright("Copyright © University of South Wales 2016")]
+[assembly: AssemblyCopyright("Copyright © University of South Wales 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("2.0.0.0")]
+[assembly: AssemblyFileVersion("2.0.0.0")]
