@@ -46,7 +46,7 @@ Template (mytemplate.liquid):
 <h1>{{ options.title }}</h1>
 <ul>
 {%- for row in data -%}
-<li>{{ row.description }}: row.quantity @ {{ row.price }} = {{ row.quantity | times: row.price }}</li>
+<li>{{ row.description }}: {{ row.quantity }} @ {{ row.price }}</li>
 {%- endfor -%}
 </ul>
 </body>
@@ -63,9 +63,9 @@ Output file (myoutputfile.html):
 <body>
 <h1>My Title</h1>
 <ul>
-<li>item 1: 24 @ 1.50 = 36</li>
-<li>item 2: 18 @ 2.75 = 49.50</li>
-<li>item 3: 6 @ 3.67 = 22.02/li>
+<li>item 1: 24 @ 1.50</li>
+<li>item 2: 18 @ 2.75</li>
+<li>item 3: 6 @ 3.67</li>
 </ul>
 </body>
 </html>
