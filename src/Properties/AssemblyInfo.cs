@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("STELETO")]
-[assembly: AssemblyDescription("Delimited text data conversion via Liquid template")]
+[assembly: AssemblyDescription("Data conversion via Liquid template")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("University of South Wales")]
 [assembly: AssemblyProduct("STELETO")]

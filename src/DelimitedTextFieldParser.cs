@@ -76,7 +76,7 @@ namespace STELETO
         {
             if (reader == null) throw new ArgumentNullException("DelimitedTextFieldParser reader");
             this.reader = reader;
-        }
+        }       
         
         /// <summary>
         /// Reads all fields on the current line, returns them as an array of strings, and advances the cursor to the next line containing data.
@@ -547,6 +547,7 @@ namespace STELETO
     /// <remarks>
     /// Based on <code>Microsoft.VisualBasic.FileIO.MalformedLineException.MalformedLineException</code>.
     /// </remarks>
+    [Serializable]
     public class CsvMalformedLineException : FormatException
     {
         /// <summary>
@@ -560,7 +561,7 @@ namespace STELETO
 
         /// <summary>
         /// Constructs an exception with a specified message, a line number, and a reference to the inner exception that is the cause of this exception.
-        /// </summary>
+        /// </summary>        
         public CsvMalformedLineException(string message, long lineNumber, Exception innerException)
             : base(message, innerException)
         {
