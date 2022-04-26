@@ -1,0 +1,11 @@
+# Logs
+logs
+*.log
+
+# .NET intermediate object files
+obj
+# .NET debug builds
+bin/Debug
+
+# local test files
+src/STELETO-test

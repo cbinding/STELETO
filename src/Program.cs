@@ -16,8 +16,6 @@ History :
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
 
 namespace STELETO
 {
@@ -139,7 +137,7 @@ namespace STELETO
             }
             catch (Exception ex)
             {
-                Console.Error.WriteLine("Error: {0}", ex.Message);
+                Console.Error.WriteLine("Error: {0} {1}", ex.Source, ex.Message);
             }
             finally
             {
@@ -197,13 +195,17 @@ namespace STELETO
             {
                 json = r.ReadToEnd();
                
-            }            
-            System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
-            dynamic parsedData = js.Deserialize<dynamic>(json);            
+            }   
+            var parsedData = System.Text.Json.JsonSerializer.Deserialize<dynamic>(json);         
+            //System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+            //js.MaxJsonLength = Int32.MaxValue; // 23/06/21 CFB - was previously failing on large JSON files
+            //dynamic parsedData = js.Deserialize<dynamic>(json);            
 
             // dictionary structure to hold all the stuff to be passed into the template
             IDictionary<string, object> templateData = new System.Collections.Generic.Dictionary<string, object>();
+            
             templateData.Add("data", parsedData);
+            
             templateData.Add("options", options);
 
             try
@@ -214,7 +216,7 @@ namespace STELETO
                 // render the data according to the template and the options passed in            
                 String outputText = template.Render(DotLiquid.Hash.FromDictionary(templateData));
 
-                //Write the rendered results to the output text file
+                // Write the rendered results to the output text file
                 System.IO.File.WriteAllText(outputFileName, outputText);
             }
             catch (Exception ex)

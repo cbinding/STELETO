@@ -6,6 +6,12 @@ in the template syntax (see [http://dotliquidmarkup.org/](http://dotliquidmarkup
 
 Some source code included here may be derived from work already in the public domain. Where this is the case it will be indicated in comments in the source code. This work is licensed under the Creative Commons Attribution 3.0 Unported License (CC-BY). To view a copy of this license, visit [http://creativecommons.org/licenses/by/3.0/](http://creativecommons.org/licenses/by/3.0/) 
 
+To build:
+dotnet build --configuration Release
+
+To run:
+STELETO.exe &lt;options&gt;
+
 Command line options may be present in any order, and may be expressed in a number of ways: 
 ```
 -name:"value" --name:"value" /name:"value"  -name="value" --name="value" /name="value"
